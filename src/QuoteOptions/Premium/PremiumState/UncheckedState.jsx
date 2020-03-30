@@ -1,15 +1,31 @@
-import { string } from 'prop-types';
+import { func, string } from 'prop-types';
 import React from 'react';
-import { styles } from './styles';
-import image from '../images/unchecked-premium.svg';
+import { noop } from 'lodash';
+import { UncheckedPremiumStyles } from './Styles';
 
-const UncheckedState = ({ text }) => {
-  const style = styles({ image });
-  return <div style={style}>{text}</div>;
+const UncheckedState = (props) => {
+  const { text, onClick } = props;
+  return (
+    <UncheckedPremiumStyles>
+      <div
+        role='button'
+        className='ant-btn ant-btn-block'
+        onClick={onClick}
+        onKeyDown={onClick}
+        tabIndex={0}>
+        {text}
+      </div>
+    </UncheckedPremiumStyles>
+  );
+};
+
+UncheckedState.defaultProps = {
+  onClick: noop
 };
 
 export default UncheckedState;
 
 UncheckedState.propTypes = {
-  text: string
+  text: string,
+  onClick: func
 };

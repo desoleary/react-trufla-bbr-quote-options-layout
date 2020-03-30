@@ -1,10 +1,10 @@
 import React from 'react';
-import { styles } from './styles';
-import image from '../images/disabled-premium.svg';
+import { DisabledPremiumStyles } from './Styles';
 
-const DisabledState = () => {
-  const style = styles({ image });
-  return <div style={style}>N/A</div>;
-};
+const DisabledState = () => (
+  <DisabledPremiumStyles>
+    <div className='ant-btn ant-btn-block disabled'>N/A</div>
+  </DisabledPremiumStyles>
+);
 
 export default DisabledState;

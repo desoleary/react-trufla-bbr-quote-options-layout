@@ -1,15 +1,31 @@
-import { string } from 'prop-types';
+import { func, string } from 'prop-types';
 import React from 'react';
-import { styles } from './styles';
-import image from '../images/checked-premium.svg';
+import { noop } from 'lodash';
+import { CheckedPremiumStyles } from './Styles';
 
-const CheckedState = ({ text }) => {
-  const style = styles({ image });
-  return <div style={style}>{text}</div>;
+const CheckedState = (props) => {
+  const { text, onClick } = props;
+  return (
+    <CheckedPremiumStyles>
+      <div
+        role='button'
+        className='ant-btn ant-btn-primary ant-btn-block'
+        onClick={onClick}
+        onKeyDown={onClick}
+        tabIndex={0}>
+        {text}
+      </div>
+    </CheckedPremiumStyles>
+  );
+};
+
+CheckedState.defaultProps = {
+  onClick: noop
+};
+
+CheckedState.propTypes = {
+  text: string,
+  onClick: func
 };
 
 export default CheckedState;
-
-CheckedState.propTypes = {
-  text: string
-};
