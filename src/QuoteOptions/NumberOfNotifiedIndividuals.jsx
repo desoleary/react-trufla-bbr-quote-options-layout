@@ -1,22 +1,23 @@
-import React from "react";
+import React from 'react';
+import { arrayOf, shape, string } from 'prop-types';
+
 import {
   Column,
   MatrixLayout,
   QuoteOptionsRowLayout
-} from "./QuoteOptionsLayout";
+} from './QuoteOptionsLayout';
 
-const NumberOfNotifiedIndividuals = ({ quoteOptionsMatrix }) => {
+const NumberOfNotifiedIndividuals = (props) => {
+  const { quoteOptionsMatrix } = props;
   const numberOfNotifiedIndividuals = quoteOptionsMatrix.slice(0, 1);
 
   const Title = () => <div>Number of Notified Individuals</div>;
 
-  const Item = props => {
-    return (
-      <Column>
-        <div>{props.notified_individuals}</div>
-      </Column>
-    );
-  };
+  const Item = (quoteOption) => (
+    <Column>
+      <div>{quoteOption.notified_individuals}</div>
+    </Column>
+  );
   const SelectPanels = () => (
     <MatrixLayout
       matrixOfProps={numberOfNotifiedIndividuals}
@@ -28,3 +29,11 @@ const NumberOfNotifiedIndividuals = ({ quoteOptionsMatrix }) => {
 };
 
 export default NumberOfNotifiedIndividuals;
+
+NumberOfNotifiedIndividuals.propTypes = {
+  quoteOptionsMatrix: arrayOf(
+    shape({
+      notified_individuals: string
+    })
+  )
+};

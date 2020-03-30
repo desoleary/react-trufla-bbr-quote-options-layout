@@ -1,23 +1,25 @@
-import React from "react";
+import { string, arrayOf, shape } from 'prop-types';
+import React from 'react';
 
-import { Row, Typography, Col } from "antd";
+import { Col, Row, Typography } from 'antd';
+
+import { Column, MatrixLayout } from './QuoteOptionsLayout';
+
 const { Text } = Typography;
-
-import {
-  Column,
-  MatrixLayout,
-  QuoteOptionsRowLayout
-} from "./QuoteOptionsLayout";
 
 const PremiumItem = ({ premium }) => (
   <Column>
-    <div>{premium || "N/A"}</div>
+    <div>{premium || 'N/A'}</div>
   </Column>
 );
 
+PremiumItem.propTypes = {
+  premium: string
+};
+
 const Premiums = ({ quoteOptionsMatrix }) => {
   const Title = () => (
-    <Row justify="center">
+    <Row justify='center'>
       <Text strong>Premium</Text>
     </Row>
   );
@@ -31,7 +33,7 @@ const Premiums = ({ quoteOptionsMatrix }) => {
       <Title />
       <Row>
         <Col>
-          {" "}
+          {' '}
           <div style={{ opacity: 0 }}>n</div>
         </Col>
       </Row>
@@ -41,6 +43,14 @@ const Premiums = ({ quoteOptionsMatrix }) => {
       <PremiumSelectMatrix />
     </div>
   );
+};
+
+Premiums.propTypes = {
+  quoteOptionsMatrix: arrayOf(
+    shape({
+      premium: string
+    })
+  )
 };
 
 export default Premiums;

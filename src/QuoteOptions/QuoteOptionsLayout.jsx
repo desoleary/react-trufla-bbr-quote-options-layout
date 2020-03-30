@@ -1,8 +1,13 @@
-import React from "react";
+import { element, any, arrayOf, shape } from 'prop-types';
+import React from 'react';
 
-import { Row, Col } from "antd";
+import { Row, Col } from 'antd';
 
 export const Column = ({ children }) => <Col span={6}>{children}</Col>;
+
+Column.propTypes = {
+  children: element
+};
 
 export const Content = ({ content }) => (
   <Column>
@@ -10,22 +15,29 @@ export const Content = ({ content }) => (
   </Column>
 );
 
-export const MatrixLayout = props => {
+Content.propTypes = {
+  content: any
+};
+
+export const MatrixLayout = (props) => {
   const { matrixOfProps, Component } = props;
 
   return (
     <div>
-      {matrixOfProps.map(innerArrayProps => {
-        return (
-          <Row>
-            {innerArrayProps.map(itemProps => {
-              return <Component {...itemProps} />;
-            })}
-          </Row>
-        );
-      })}
+      {matrixOfProps.map((innerArrayProps) => (
+        <Row>
+          {innerArrayProps.map((itemProps) => (
+            <Component {...itemProps} />
+          ))}
+        </Row>
+      ))}
     </div>
   );
+};
+
+MatrixLayout.propTypes = {
+  Component: element,
+  matrixOfProps: arrayOf(shape({}))
 };
 
 export const QuoteOptionsRowLayout = ({ first, second }) => (
@@ -34,3 +46,8 @@ export const QuoteOptionsRowLayout = ({ first, second }) => (
     <Col span={16}>{second}</Col>
   </Row>
 );
+
+QuoteOptionsRowLayout.propTypes = {
+  first: element,
+  second: element
+};

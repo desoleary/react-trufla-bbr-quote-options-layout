@@ -1,3 +1,3 @@
-import QuoteOptions from "./QuoteOptions";
+import QuoteOptions from './QuoteOptions';
 
 export default QuoteOptions;

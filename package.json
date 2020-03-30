@@ -4,6 +4,49 @@
   "description": "",
   "keywords": [],
   "main": "src/index.js",
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "eslint": "eslint --ext .js --ext .jsx src --quiet --cache",
+    "eslint:format": "yarn run eslint --fix",
+    "prettier": "prettier -l src/**/*/*.{js,jsx,css,scss} !src/**/*/__snapshots__/*",
+    "prettier:format": "yarn run prettier --write"
+  },
+  "lint-staged": {
+    "src/**/*/*.{js,jsx}": [
+      "prettier -l --write",
+      "git add",
+      "yarn run eslint:format",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "devDependencies": {
+    "typescript": "3.3.3",
+    "prettier": "^1.19.1",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-config-prettier": "^6.10.1",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-config-airbnb": "^18.1.0",
+    "eslint-config-react-app": "^5.2.1",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.19.0",
+    "eslint-plugin-react-hooks": "^2.5.1",
+    "lint-staged": "^8.2.1",
+    "husky": "^3.1.0"
+  },
   "dependencies": {
     "antd": "4.0.2",
     "antd-mask-input": "0.1.13",
@@ -13,20 +56,5 @@
     "react": "16.12.0",
     "react-dom": "16.12.0",
     "react-scripts": "3.0.1"
-  },
-  "devDependencies": {
-    "typescript": "3.3.3"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ]
+  }
 }
