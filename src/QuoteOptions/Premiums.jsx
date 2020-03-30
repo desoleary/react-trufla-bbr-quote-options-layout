@@ -1,21 +1,12 @@
-import { string, arrayOf, shape } from 'prop-types';
+import { arrayOf, shape, string } from 'prop-types';
 import React from 'react';
 
 import { Col, Row, Typography } from 'antd';
 
-import { Column, MatrixLayout } from './QuoteOptionsLayout';
+import { MatrixLayout } from './QuoteOptionsLayout';
+import Premium from './Premium';
 
 const { Text } = Typography;
-
-const PremiumItem = ({ premium }) => (
-  <Column>
-    <div>{premium || 'N/A'}</div>
-  </Column>
-);
-
-PremiumItem.propTypes = {
-  premium: string
-};
 
 const Premiums = ({ quoteOptionsMatrix }) => {
   const Title = () => (
@@ -25,7 +16,7 @@ const Premiums = ({ quoteOptionsMatrix }) => {
   );
 
   const PremiumSelectMatrix = () => (
-    <MatrixLayout matrixOfProps={quoteOptionsMatrix} Component={PremiumItem} />
+    <MatrixLayout matrixOfProps={quoteOptionsMatrix} Component={Premium} />
   );
 
   return (
